@@ -42,21 +42,17 @@ def ExportFBX():
     fbx_filepath = tempDoc_filepath
     fbx_filepath = fbx_filepath.replace('.c4d', '')
     
-    #bring up the file save dialog
-    #fbx_filepath = storage.LoadDialog(title="Save File for Alembic Export", 
-    #flags=c4d.FILESELECT_SAVE, force_suffix="fbx")
-    #if fbx_filepath is None:
-    #    return
-    
     #the FBX export settings
     container = c4d.plugins.GetWorldPluginData(fbx_plugin_id)
     for id, value in container:
         if id == c4d.FBXEXPORT_ASCII:  container[id] = 0
-        elif id == c4d.FBXEXPORT_BAKE_ALL_FRAMES: container[id] = 0
+        elif id == c4d.FBX_EXPORTVERSION_NATIVE: container[id] = 0
+        elif id == c4d.FBXEXPORT_TRACKS: container[id] = 1
+        elif id == c4d.FBXEXPORT_BAKE_ALL_FRAMES: container[id] = 1
         elif id == c4d.FBXEXPORT_SAVE_NORMALS: container[id] = 1
         elif id == c4d.FBXEXPORT_GRP_ANIMATION: container[id] = 1
         elif id == c4d.FBXEXPORT_TEXTURES: container[id] = 1
-        elif id == c4d.FBXEXPORT_EMBED_TEXTURES: container[id] = 1
+        elif id == c4d.FBXEXPORT_EMBED_TEXTURES: container[id] = 0
     c4d.plugins.SetWorldPluginData(fbx_plugin_id, container)
     c4d.documents.SaveDocument(tempDoc,fbx_filepath, c4d.SAVEDOCUMENTFLAGS_DONTADDTORECENTLIST, fbx_plugin_id)
 
