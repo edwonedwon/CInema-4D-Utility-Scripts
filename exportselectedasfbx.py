@@ -10,6 +10,8 @@ tempDoc_filepath = "string"
 
 def CloseDocument():
     c4d.CallCommand(12664) #close document
+    print(origDoc.GetDocumentName())
+    c4d.documents.SetActiveDocument(origDoc)
     pass
             
 def SaveSelectedObjectsAs():
@@ -29,7 +31,8 @@ def OpenTempScene():
     c4d.documents.LoadFile(tempDoc_filepath)
 
 def DeleteTempScene():
-    pass
+    global tempDoc
+    os.remove(tempDoc_filepath)
 
 def ExportFBX():
     global tempDoc
