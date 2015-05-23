@@ -37,6 +37,7 @@ def ExportFBX():
     fbx_plugin_id = 1026370
     
     fbx_filepath = tempDoc_filepath
+    fbx_filepath = fbx_filepath.replace('.c4d', '')
     
     #bring up the file save dialog
     #fbx_filepath = storage.LoadDialog(title="Save File for Alembic Export", 
