@@ -10,7 +10,7 @@ tempDoc_filepath = "string"
 
 def CloseDocument():
     c4d.CallCommand(12664) #close document
-    print(origDoc.GetDocumentName())
+    #print(origDoc.GetDocumentName())
     c4d.documents.SetActiveDocument(origDoc)
     pass
             
@@ -20,7 +20,7 @@ def SaveSelectedObjectsAs():
     global tempDoc_filepath
     tempDoc_filepath = storage.LoadDialog(title="Save File for Export", 
     flags=c4d.FILESELECT_SAVE, force_suffix="c4d")
-    print(tempDoc_filepath)
+    #print(tempDoc_filepath)
     #save the file
     tempDoc = c4d.documents.IsolateObjects(origDoc,selected)
     c4d.documents.SaveDocument(tempDoc,tempDoc_filepath,
@@ -46,11 +46,11 @@ def ExportFBX():
     container = c4d.plugins.GetWorldPluginData(fbx_plugin_id)
     for id, value in container:
         if id == c4d.FBXEXPORT_ASCII:  container[id] = 0
-        elif id == c4d.FBX_EXPORTVERSION_NATIVE: container[id] = 0
-        elif id == c4d.FBXEXPORT_TRACKS: container[id] = 1
+        #elif id == c4d.FBX_EXPORTVERSION_NATIVE: container[id] = 0
+        #elif id == c4d.FBXEXPORT_TRACKS: container[id] = 1
         elif id == c4d.FBXEXPORT_BAKE_ALL_FRAMES: container[id] = 1
         elif id == c4d.FBXEXPORT_SAVE_NORMALS: container[id] = 1
-        elif id == c4d.FBXEXPORT_GRP_ANIMATION: container[id] = 1
+        #elif id == c4d.FBXEXPORT_GRP_ANIMATION: container[id] = 1
         elif id == c4d.FBXEXPORT_TEXTURES: container[id] = 1
         elif id == c4d.FBXEXPORT_EMBED_TEXTURES: container[id] = 0
     c4d.plugins.SetWorldPluginData(fbx_plugin_id, container)
